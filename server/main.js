@@ -39,7 +39,15 @@ function logMemory(label) {
   );
 }
 
+// Mostra se as variáveis chegam no container e se viram flag de fato no processo
+function logEnv() {
+  console.log('[mem/env] GALAXY_NODE_OPTIONS=', process.env.GALAXY_NODE_OPTIONS ?? '(unset)');
+  console.log('[mem/env] NODE_OPTIONS=', process.env.NODE_OPTIONS ?? '(unset)');
+  console.log('[mem/env] execArgv=', JSON.stringify(process.execArgv));
+}
+
 Meteor.startup(async () => {
+  logEnv();
   logMemory('startup');
   setInterval(() => logMemory('tick'), 30000);
 
